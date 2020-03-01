@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D25BCBD240A99E20099B267 /* PERCENTAGE-BASED-AUTOLAYOUT_ADDON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25BCBC240A99E20099B267 /* PERCENTAGE-BASED-AUTOLAYOUT_ADDON.swift */; };
 		7DF9242E24092D8800947050 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9242D24092D8800947050 /* AppDelegate.swift */; };
 		7DF9243024092D8800947050 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9242F24092D8800947050 /* SceneDelegate.swift */; };
 		7DF9243224092D8800947050 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9243124092D8800947050 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D25BCBC240A99E20099B267 /* PERCENTAGE-BASED-AUTOLAYOUT_ADDON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PERCENTAGE-BASED-AUTOLAYOUT_ADDON.swift"; sourceTree = "<group>"; };
 		7DF9242A24092D8800947050 /* PROGRAMMATIC_GUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PROGRAMMATIC_GUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DF9242D24092D8800947050 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DF9242F24092D8800947050 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				7DF9242D24092D8800947050 /* AppDelegate.swift */,
 				7DF9242F24092D8800947050 /* SceneDelegate.swift */,
 				7DF9243124092D8800947050 /* ViewController.swift */,
+				7D25BCBC240A99E20099B267 /* PERCENTAGE-BASED-AUTOLAYOUT_ADDON.swift */,
 				7DF9243324092D8800947050 /* Main.storyboard */,
 				7DF9243624092D8900947050 /* Assets.xcassets */,
 				7DF9243824092D8900947050 /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DF9243224092D8800947050 /* ViewController.swift in Sources */,
+				7D25BCBD240A99E20099B267 /* PERCENTAGE-BASED-AUTOLAYOUT_ADDON.swift in Sources */,
 				7DF9242E24092D8800947050 /* AppDelegate.swift in Sources */,
 				7DF9243024092D8800947050 /* SceneDelegate.swift in Sources */,
 			);

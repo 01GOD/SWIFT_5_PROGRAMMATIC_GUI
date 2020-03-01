@@ -27,6 +27,13 @@ class ViewController: UIViewController {
         //This animates any change that was made to the constraints
         UIView.animate(withDuration: 0.5) {
             
+            self.label.transform = self.label.transform.rotated(by: CGFloat(M_PI))
+            self.label.transform = self.label.transform.rotated(by: CGFloat(M_PI))
+
+            
+//            self.label.transform = self.label.transform.? CGAffineTransform(rotationAngle:CGFloat.pi):self.label.transform.inverted()
+//            self.label.transform =  CGAffineTransform(rotationAngle: CGFloat.pi)
+            //This method specifically animates any change that was made to the constraints
             self.view.layoutIfNeeded()
             
         }

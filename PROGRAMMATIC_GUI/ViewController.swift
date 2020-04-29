@@ -9,53 +9,80 @@
 import UIKit
 
 class ViewController: UIViewController {
-    //Make class vars here.
+    //Class vars here
     let label=UILabel()
     let button=UIButton()
-    //This is making a reference to the label's constraint so that it can be animated. Otherwise a new unnamed constraint would be added to the label if a new constraint of same type was made with new val in that button's clicked method
+    let slider=UISlider()
+    //This is making a reference to the label's constraint so that it can be animated. Otherwise a new unnamed constraint would be added to the label if a new constraint of the same type was made with a new val in that button's clicked method
     var labelLeadingAnchor: NSLayoutConstraint!
-    //Make class methods here
-    //Button method to animate the constraints of the label's labelLeadingAnchor:
+    //Class methods here
+    //Button clicked method to animate the constraints of the label's labelLeadingAnchor
     @objc func clicked(sender:UIButton){
         print("CLICKED")
         //These set the new constraints, but those won't update until layoutIfNeeded() is called
         if labelLeadingAnchor.constant==view.bounds.width/2{
-            labelLeadingAnchor.constant=view.bounds.width/7
+            labelLeadingAnchor.constant=view.bounds.width-view.bounds.width
+            UIView.animate(withDuration: 0.5) {
+                
+                self.label.transform = self.label.transform.rotated(by: (-1 * CGFloat(M_PI/2)))
+                self.view.layoutIfNeeded()
+                self.label.transform = self.label.transform.rotated(by: (-1 * CGFloat(M_PI/2)))
+                self.view.layoutIfNeeded()
+            }
         }else{
             labelLeadingAnchor.constant=view.bounds.width/2
-        }
-        //This animates any change that was made to the constraints
-        UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 0.5) {
+                self.label.transform = self.label.transform.rotated(by: CGFloat(M_PI))
+                self.view.layoutIfNeeded()
             
-            self.label.transform = self.label.transform.rotated(by: CGFloat(M_PI))
-            self.label.transform = self.label.transform.rotated(by: CGFloat(M_PI))
+                
+            }
+        }
+        
+        
+        //This animates any change that was made to the constraints
+//        UIView.animate(withDuration: 0.5) {
+//
+//            self.label.transform = self.label.transform.rotated(by: CGFloat(M_PI))
+//            self.label.transform = self.label.transform.rotated(by: CGFloat(M_PI))
 
             
 //            self.label.transform = self.label.transform.? CGAffineTransform(rotationAngle:CGFloat.pi):self.label.transform.inverted()
 //            self.label.transform =  CGAffineTransform(rotationAngle: CGFloat.pi)
             //This method specifically animates any change that was made to the constraints
-            self.view.layoutIfNeeded()
+//            self.view.layoutIfNeeded()
             
-        }
+//        }
+    }
+    
+    @objc func sliderMoved(sender:UISlider){
+        label.text=String(slider.value)
+        print(slider.value)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //Prepare label
-        label.text="TEXT"
+//        label.text="TEXT"
         label.textAlignment=NSTextAlignment.center
-        //Round the corners (which is done in a rounded corner mask seemingly) and then apply that rounded corner mask to the label
+        
+        //Round the corners (which is done in a rounded corner mask seemingly) and then apply that rounded corner mask to the label:
         label.layer.cornerRadius=20
+//        Make sure to apply the layer mask to apply those rounded corners:
         label.layer.masksToBounds=true
+        
         label.backgroundColor=#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         view.addSubview(label)
         //Add label's constraints after calling view.addSubview to properly add autolayout to programmatic GUI. Make sure to set any of those Anchors to isActive=true
+        
         //Next line disables something that would have interfered with adding autolayout programmatically
         label.translatesAutoresizingMaskIntoConstraints=false
-        //Adding constraints to label:
+        
+        //Adding constraints to label and make sure to set .isActive to true:
         label.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5).isActive = true
         label.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5).isActive = true
-        labelLeadingAnchor=label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant:view.bounds.width/7)
+        //Use the "safeAreaLayoutGuide to prevent GUI from overlapping the "notch" in some iPhone models
+        labelLeadingAnchor=label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant:view.bounds.width/2)
         labelLeadingAnchor.isActive=true
         label.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 0).isActive=true
         //Extra for later if want to use later:
@@ -68,7 +95,12 @@ class ViewController: UIViewController {
         //Prepare button
         button.backgroundColor=#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         button.titleLabel?.text="CONTROL"
-        //Add a target to button to target clicked method defined at start of class
+        button.setTitle("CLICK", for: .normal)
+        button.titleLabel?.textColor=#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        button.layer.cornerRadius=20
+        //        Make sure to apply the layer mask to apply those rounded corners:
+        button.layer.masksToBounds=true
+        //Add a target selector style method to button to target clicked method defined at start of class (make sure the method has @objc bridging keyword before the func keyword in definition)
         button.addTarget(self, action: #selector(clicked), for: .touchUpInside)
         view.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints=false
@@ -77,6 +109,16 @@ class ViewController: UIViewController {
         button.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2).isActive = true
         button.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive=true
         button.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive=true
+        
+        //Adding slider:
+        
+//        slider.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topanchor, multiplier: 100)
+        
+        view.addSubview(slider)
+        slider.center.y=(view.frame.size.height/7)*6.5
+        slider.center.x=view.center.x
+        slider.addTarget(self, action: #selector(sliderMoved), for: .valueChanged)
+        
         
         
         //Misc parts drawer

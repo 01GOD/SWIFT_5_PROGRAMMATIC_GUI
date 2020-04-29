@@ -54,9 +54,9 @@ class ViewController: UIViewController {
             
 //        }
     }
-    
+    //Slider val to label:
     @objc func sliderMoved(sender:UISlider){
-        label.text=String(slider.value)
+        label.text=String(Int(slider.value))
         print(slider.value)
     }
     
@@ -113,7 +113,8 @@ class ViewController: UIViewController {
         //Adding slider:
         
 //        slider.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topanchor, multiplier: 100)
-        
+        slider.minimumValue=0
+        slider.maximumValue=100
         view.addSubview(slider)
         slider.center.y=(view.frame.size.height/7)*6.5
         slider.center.x=view.center.x
